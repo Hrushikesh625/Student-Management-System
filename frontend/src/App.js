@@ -26,6 +26,15 @@ function App() {
     setStudents(result.data);
   };
 
+const editStudent = (s) => {
+  setStudent({
+    id: s.id,
+    name: s.name,
+    email: s.email,
+    course: s.course
+  });
+};
+
   // DELETE student
   const deleteStudent = async (id) => {
     await axios.delete(`http://localhost:8080/student/${id}`);
@@ -126,9 +135,10 @@ function App() {
               <td>{s.email}</td>
               <td>{s.course}</td>
               <td>
-                <button onClick={() => deleteStudent(s.id)}>
-                  Delete
-                </button>
+              <button onClick={() => editStudent(s)}>Edit</button>
+               <button onClick={() => deleteStudent(s.id)}>Delete</button>
+                
+                 
               </td>
             </tr>
           ))}
